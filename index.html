@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A student-created informational website project about Ajmal Super 40.">
+  <title>Ajmal Super 40 | Education & Opportunity</title>
+  <style>
+    :root {
+      --navy: #10264a;
+      --blue: #1769aa;
+      --gold: #ffc857;
+      --ink: #1e293b;
+      --muted: #64748b;
+      --pale: #f4f8fc;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      color: var(--ink);
+      line-height: 1.65;
+      background: var(--white);
+    }
+    a { color: inherit; }
+    .topbar {
+      position: sticky; top: 0; z-index: 10;
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 16px; padding: 14px max(5%, calc((100% - 1120px)/2));
+      background: rgba(16, 38, 74, .97); color: white;
+      box-shadow: 0 3px 16px rgba(0,0,0,.12);
+    }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; font-weight: 800; }
+    .brand-mark {
+      display: grid; place-items: center; width: 42px; height: 42px; border-radius: 12px;
+      color: var(--navy); background: var(--gold); font-size: 20px;
+    }
+    .brand small { display: block; font-size: 11px; letter-spacing: 1.6px; color: #cbd5e1; }
+    nav { display: flex; flex-wrap: wrap; gap: 18px; }
+    nav a { text-decoration: none; color: #f8fafc; font-size: 14px; font-weight: 700; }
+    nav a:hover, nav a:focus { color: var(--gold); }
+    .hero {
+      min-height: 540px; display: flex; align-items: center; color: white;
+      background:
+        linear-gradient(90deg, rgba(8, 25, 54, .94) 0%, rgba(8, 25, 54, .78) 48%, rgba(8,25,54,.25) 100%),
+        url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1800&q=85") center/cover;
+    }
+    .hero-inner { width: min(1120px, 90%); margin: auto; padding: 72px 0; }
+    .eyebrow { color: var(--gold); font-weight: 800; letter-spacing: 2px; text-transform: uppercase; font-size: 13px; }
+    h1 { max-width: 720px; margin: 14px 0 18px; font-size: clamp(38px, 6vw, 68px); line-height: 1.08; }
+    .hero p { max-width: 620px; color: #e2e8f0; font-size: 18px; }
+    .buttons { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 28px; }
+    .btn { display: inline-block; text-decoration: none; padding: 12px 20px; border-radius: 9px; font-weight: 800; }
+    .btn-gold { color: var(--navy); background: var(--gold); }
+    .btn-outline { color: white; border: 1px solid rgba(255,255,255,.75); }
+    section { padding: 76px 5%; }
+    .container { max-width: 1120px; margin: auto; }
+    .section-head { max-width: 720px; margin: 0 auto 38px; text-align: center; }
+    .section-head .eyebrow { color: var(--blue); }
+    h2 { margin: 8px 0 12px; color: var(--navy); font-size: clamp(28px, 4vw, 42px); line-height: 1.2; }
+    .section-head p, .muted { color: var(--muted); }
+    .intro-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 38px; align-items: center; }
+    .intro-img { width: 100%; min-height: 300px; object-fit: cover; border-radius: 18px; box-shadow: 0 16px 35px rgba(16,38,74,.15); }
+    .check-list { list-style: none; padding: 0; }
+    .check-list li { margin: 12px 0; padding-left: 30px; position: relative; }
+    .check-list li::before { content: "✓"; position: absolute; left: 0; color: #16845b; font-weight: 900; }
+    .pale { background: var(--pale); }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .card { background: white; padding: 28px; border-radius: 16px; box-shadow: 0 8px 28px rgba(15, 35, 65, .07); border: 1px solid #e5edf5; }
+    .card-icon { width: 52px; height: 52px; display: grid; place-items: center; border-radius: 14px; background: #e4f2ff; font-size: 25px; }
+    .card h3 { color: var(--navy); margin: 18px 0 8px; }
+    .card p { color: var(--muted); margin-bottom: 0; }
+    .quote {
+      padding: 38px; border-radius: 18px; color: white; text-align: center;
+      background: linear-gradient(135deg, var(--navy), #1d5b91);
+    }
+    .quote blockquote { margin: 0 auto 12px; max-width: 800px; font-size: clamp(22px, 3.5vw, 32px); font-weight: 700; }
+    .steps { counter-reset: step; display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .step { padding: 22px; background: white; border-radius: 14px; border: 1px solid #e5edf5; }
+    .step::before { counter-increment: step; content: "0" counter(step); display: inline-block; color: var(--blue); font-size: 22px; font-weight: 900; margin-bottom: 10px; }
+    .contact-box { display: flex; align-items: center; justify-content: space-between; gap: 24px; padding: 32px; border-radius: 18px; background: #fff7df; }
+    .contact-box h2 { margin-top: 0; }
+    footer { padding: 28px 5%; text-align: center; color: #cbd5e1; background: #0b1b35; font-size: 14px; }
+    footer a { color: var(--gold); }
+    .note { margin-top: 22px; padding: 14px 16px; border-left: 4px solid var(--gold); background: #fff9e8; color: #59471a; border-radius: 5px; font-size: 14px; }
+    @media (max-width: 760px) {
+      .topbar { align-items: flex-start; flex-direction: column; padding: 12px 5%; }
+      nav { gap: 10px 15px; }
+      nav a { font-size: 13px; }
+      .hero { min-height: 500px; background-position: 58% center; }
+      .hero p { font-size: 16px; }
+      section { padding: 56px 5%; }
+      .intro-grid, .cards, .steps { grid-template-columns: 1fr; }
+      .intro-img { min-height: 220px; }
+      .contact-box { align-items: flex-start; flex-direction: column; padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Ajmal Super 40 home">
+      <span class="brand-mark">A40</span>
+      <span>AJMAL SUPER 40<small>LEARN • GROW • ACHIEVE</small></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#focus">Learning</a>
+      <a href="#journey">Student Journey</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="eyebrow">Education opens doors</div>
+        <h1>Big dreams begin with the right guidance.</h1>
+        <p>This student-created website introduces Ajmal Super 40 and celebrates the role of education, hard work, and guidance in helping learners work towards their goals.</p>
+        <div class="buttons">
+          <a class="btn btn-gold" href="#about">Explore the Project →</a>
+          <a class="btn btn-outline" href="#focus">Discover Learning</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container intro-grid">
+        <div>
+          <div class="eyebrow">About the initiative</div>
+          <h2>Opportunity grows when learning comes first.</h2>
+          <p>Ajmal Super 40 is the subject of this school website project. The page is designed to share a simple message: with consistent effort, supportive guidance, and access to learning, students can prepare for future opportunities.</p>
+          <p class="muted">This is an educational project page, not an official website. For verified programme details, eligibility, admissions, and contact information, consult Ajmal Super 40's official announcements.</p>
+          <ul class="check-list">
+            <li>Encourages dedication and regular study</li>
+            <li>Highlights the value of mentorship</li>
+            <li>Promotes confidence and goal-setting</li>
+          </ul>
+        </div>
+        <img class="intro-img" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=85" alt="Students studying together at a table">
+      </div>
+    </section>
+
+    <section class="pale" id="focus">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">A strong learning foundation</div>
+          <h2>What helps students move forward?</h2>
+          <p>Successful learning is built through habits that students can practise every day.</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">📚</div>
+            <h3>Focused Study</h3>
+            <p>Set clear goals, revise lessons regularly, and break difficult topics into smaller steps.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🧭</div>
+            <h3>Guidance</h3>
+            <p>Ask questions, learn from teachers and mentors, and use feedback to improve understanding.</p>
+          </article>
+          <article class="card">
+            <div class="card-icon" aria-hidden="true">🌱</div>
+            <h3>Steady Progress</h3>
+            <p>Practise consistently, learn from mistakes, and remember that progress takes time.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container quote">
+        <blockquote>“Education is not just preparation for life; it is a way to create new possibilities.”</blockquote>
+        <p>Stay curious. Stay consistent. Keep learning.</p>
+      </div>
+    </section>
+
+    <section class="pale" id="journey">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">The student journey</div>
+          <h2>Three steps towards a goal</h2>
+          <p>A simple approach students can use in any subject.</p>
+        </div>
+        <div class="steps">
+          <article class="step">
+            <h3>Set a clear goal</h3>
+            <p class="muted">Decide what you want to learn and make a realistic study plan.</p>
+          </article>
+          <article class="step">
+            <h3>Practise every day</h3>
+            <p class="muted">Study regularly, solve questions, and seek help when a topic is confusing.</p>
+          </article>
+          <article class="step">
+            <h3>Review and improve</h3>
+            <p class="muted">Check your progress, revise important ideas, and adjust your plan when needed.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container contact-box">
+        <div>
+          <div class="eyebrow">Learn more</div>
+          <h2>Looking for official information?</h2>
+          <p class="muted">Please check verified Ajmal Super 40 announcements for current programme information, admission notices, and contact details.</p>
+        </div>
+        <a class="btn btn-gold" href="https://www.google.com/search?q=Ajmal+Super+40+official" target="_blank" rel="noopener noreferrer">Find Official Information ↗</a>
+      </div>
+      <div class="container note"><strong>Project note:</strong> This website is created for a Class 10 HTML project. It is not affiliated with or endorsed by Ajmal Super 40. The photographs are illustrative and load from Unsplash, so an internet connection is needed to display them.</div>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Student HTML Project • Ajmal Super 40</p>
+    <p>Made with HTML and CSS | <a href="#home">Back to top ↑</a></p>
+  </footer>
+</body>
+</html>
